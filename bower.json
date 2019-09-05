@@ -1,0 +1,19 @@
+{
+  "name": "Pokemon",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "iron-collapse": "2.0.0",
+    "iron-ajax": "2.0.0",
+    "game-card": "1.0.6"
+  }
+}

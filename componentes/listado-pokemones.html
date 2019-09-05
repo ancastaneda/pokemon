@@ -1,0 +1,68 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="./detalle-pokemon.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/game-card/game-card.html">
+<dom-module id="listado-pokemones">
+    <template>
+<style type="text/css">
+
+
+</style>
+<iron-ajax
+url="https://pokeapi.co/api/v2/pokemon"
+last-response="{{pokemones}}"
+auto
+>
+</iron-ajax>
+
+<iron-ajax id="detailAjax" url="https://pokeapi.co/api/v2/pokemon/{{this.descripcion}}" last-response="{{pokemonesDetalle}}">
+    </iron-ajax>
+   <template is="dom-repeat" items="[[pokemones.results]]">
+       <game-card on-click="buscar" symbol="♣" rank="6" flippable unrevealed>
+                      
+       </game-card>   
+   <detalle-pokemon
+    nombre="[[item.name]]"
+    descripcion="[[item.url]]"
+    >
+   </detalle-pokemon>     
+</template>
+
+    </template>
+    <script type="text/javascript">
+        class ListadoPokemones extends Polymer.Element {
+            static get is() {
+                return 'listado-pokemones';
+            }
+            static get properties() {
+                return {
+                    pokemones: {
+                        type: Array,
+                        value: function() {
+                            return [];
+                        }
+
+                    },
+                    pokemonDetalle: {
+                        type: Array,
+                        value: function() {
+                            return [];
+                        }
+
+                    }
+                };
+            }
+            obtener(e) {
+                console.log(this.descripcion);
+                this.$.detailAjax.generateRequest();
+            }
+            buscar() {
+                console.log("[[pokemones.results.0.url]]");
+                this.$.detailAjax.generateRequest();
+            }
+        }
+        window.customElements.define(ListadoPokemones.is, ListadoPokemones)
+    </script>
+</dom-module>

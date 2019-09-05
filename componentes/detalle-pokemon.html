@@ -1,0 +1,36 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
+<dom-module id="detalle-pokemon">
+    <template>
+<style type="text/css">
+
+</style>
+<p on-click="toggle">[[nombre]]</p>
+<iron-collapse opened="[[desplegado]]">
+<p>[[descripcion]]</p>
+</iron-collapse>
+</template>
+    <script type="text/javascript">
+        class DetallePokemon extends Polymer.Element {
+            static get is() {
+                return 'detalle-pokemon';
+            }
+            static get properties() {
+                return {
+                    nombre: String,
+                    descripcion: String,
+                    caracteristicas: String,
+                    desplegado: {
+                        type: Boolean,
+                        value: false
+                    }
+                };
+            }
+
+            toggle() {
+                this.desplegado = !this.desplegado;
+            }
+        }
+        window.customElements.define(DetallePokemon.is, DetallePokemon)
+    </script>
+</dom-module>
